@@ -7,8 +7,8 @@
   </div>
 </template>
 <script>
-
 import Swal from 'sweetalert2'
+let gapi
 export default {
   name: 'NavUser',
   data () {
@@ -18,7 +18,7 @@ export default {
     signOutMe () {
       Swal.fire({
         title: 'Are you sure to log out?',
-        type: 'warning',
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',

@@ -126,12 +126,8 @@ export default {
           this.$emit('changeToGetAll')
         })
         .catch(err => {
-          for (let k in err) {
-            console.log(err[k])
-          }
           console.log(err)
         })
-      // });
     },
     getTags () {
       let tags = []

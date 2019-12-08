@@ -101,7 +101,6 @@ i{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: calc(100vh - 8vh);
   width: 100vw;
   background: url("../assets/image/white1.png");
   background-position-x: 70%

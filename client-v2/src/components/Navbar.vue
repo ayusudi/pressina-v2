@@ -18,12 +18,11 @@
             <h2>Register</h2>
             <br>
             <label for>Name :</label>
-            <input type="text" name="nameRegist" id="nameRegist" v-model="registerName" />
+            <input type="text" name="nameRegist" id="nameRegist" v-model="registerName" class="p5px" />
             <label for>Email :</label>
-            <input type="email" name="emailRegist" id="emailRegist" v-model="registerEmail" />
+            <input type="email" name="emailRegist" id="emailRegist" v-model="registerEmail" class="p5px"/>
             <label for>Password</label>
             <div style="width:350px;">
-
                 <el-input show-password name="passwordRegist" id="passwordRegister" v-model="registerPassword"></el-input>
             </div>
             <br>
@@ -33,7 +32,7 @@
         <br>
         <div style="margin: 0 auto">
 
-            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google" /></button>
+            <!-- <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google" /></button> -->
           </div>
     </el-dialog>
 
@@ -42,7 +41,7 @@
         <form action class="formSign" @submit.prevent="signinMe">
               <h2>Sign In</h2>
               <label for>Email :</label>
-              <input type="email" v-model="signEmail" />
+              <input type="email" v-model="signEmail" class="p5px"/>
               <label for>Password</label>
               <div style="width:350px">
 
@@ -54,7 +53,7 @@
               <!-- <div id="google-signin-button" class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
             </form>
-              <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google" /></button>
+              <!-- <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google <i class="fab fa-google" /></button> -->
 
       <!-- FORGOT PASSWORD -->
         <el-dialog width="30%" :visible.sync="innerVisible" append-to-body >
@@ -82,7 +81,7 @@
             <div v-else class="height-fp">
               <form @submit.prevent="cekCode" class="ps">
                 <br />
-                <h3>We Send Code To</h3>
+                <h3 class="wesendcode">We Send Code To</h3>
                 <h4>{{emailcodepass}}</h4>
                 <br /><br>
                 <input type="text" v-model="inputCode" placeholder="Code" />
@@ -115,7 +114,7 @@
 import axios from 'axios'
 import GoogleSignInButton from 'vue-google-signin-button-directive'
 import toastr from 'toastr'
-let gapi
+// let gapi
 toastr.options = {
   closeButton: false,
   debug: false,
@@ -168,9 +167,9 @@ export default {
     }
   },
   mounted () {
-    gapi.signin2.render('google-signin-button', {
-      onsuccess: this.onSignIn
-    })
+    // gapi.signin2.render('google-signin-button', {
+    //   onsuccess: this.onSignIn
+    // })
   },
   methods: {
     OnGoogleAuthSuccess (idToken) {
@@ -353,10 +352,9 @@ export default {
         .then(({ data }) => {
         })
         .catch(err => {
+          console.log(err)
           this.gotCode = false
           this.correctCode = false
-          let errors = err.response.data
-          console.log(errors)
         })
     }
   },
@@ -408,9 +406,15 @@ h3 {
   color: white;
   font-family: "Oswald", sans-serif;
 }
+
 h3:hover {
   color: #205fa7;
 }
+
+.wesendcode{
+  color: #205fa7
+}
+
 h2 {
   font-family: "Poppins", sans-serif;
   font-size: 30px;
@@ -435,7 +439,7 @@ h2 {
 
 input {
   font-size: 18px;
-  width: 83%;
+  width: calc(83% - 15px);
   height: 3.5vh;
   margin-top: 1px;
   border: rgb(214, 214, 214) solid 0.3pt;
@@ -513,5 +517,9 @@ div.g-signin2 {
   width: 85vw;
   display: flex;
   justify-content: flex-end;
+}
+
+.p5px{
+  padding-left: 15px
 }
 </style>

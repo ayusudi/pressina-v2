@@ -19,7 +19,6 @@ images.sendUploadToGCS,
 router.use(authentication)
 router.post('/', ArticleController.create)
 router.get('/mine', ArticleController.getMyArticle)
-// router.post('/mine', ArticleController.getMyArticle) 
 router.delete('/', ArticleController.destroyAll)
 router.post('/tag', ArticleController.filterTag)
 router.post('/search', ArticleController.filterArticle)

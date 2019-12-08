@@ -66,7 +66,7 @@
         <div v-else>
           <form @submit.prevent="cekCode" class="ps">
             <br />
-            <h3>We Send Code To</h3>
+            <h3 class="wesendcoe">We Send Code To</h3>
             <h4>{{email}}</h4>
             <br />
             <input type="text" v-model="inputCode" placeholder="Code" />
@@ -207,9 +207,7 @@ export default {
       })
         .then(({ data }) => {
         })
-        .catch(err => {
-          let errors = err.response.data
-          console.log(errors)
+        .catch(() => {
         })
     },
     changeProfile () {
@@ -230,14 +228,12 @@ export default {
           this.$emit('updateProfile')
           // this.getIdentity();
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch()
     },
     deleteAll () {
       Swal.fire({
         title: 'Are you sure to delete all articles?',
-        type: 'warning',
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -255,8 +251,7 @@ export default {
               Swal.fire('Success', 'Delete all your article', 'success')
               this.$emit('updateProfile')
             })
-            .catch(err => {
-              console.log(err)
+            .catch(() => {
             })
         } else {
           Swal.fire('Cancel', 'We keep your articles save', 'success')
@@ -302,8 +297,9 @@ export default {
 </script>
 
 <style scoped>
+
 .box {
-  height: calc(100vh - 131px);
+  height: calc(100vh - 110px);
   padding-top: 2%;
   width: 94%;
   margin-top: 30px;

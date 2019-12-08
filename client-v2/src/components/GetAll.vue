@@ -85,14 +85,13 @@ export default {
     getMyArticle () {
       this.items = []
       axios({
-        method: 'get',
+        method: 'post',
         url: this.baseUrl + '/articles/mine',
         headers: {
           token: localStorage.getItem('token')
         }
       })
         .then(result => {
-          console.log('fetch articles')
           if (result.data.articles.length > 0) {
             this.items = result.data.articles
             let user = result.data.articles[0].author
@@ -101,14 +100,12 @@ export default {
               image: user.image,
               email: user.email
             })
-            console.log(user)
             this.isLoading = false
           } else {
             this.items = []
             this.updateLeftBar()
             this.isLoading = false
           }
-          console.log(result.data.articles, '<<<<<<<<<<')
           // .
         })
         .catch(err => {
@@ -143,16 +140,13 @@ export default {
               let items = this.items
               for (let i = 0; i < items.length; i++) {
                 if (items[i]._id === input) {
-                  console.log('herree')
                   items.splice(i, 1)
                 }
               }
-              console.log(items)
               this.items = items
               this.isLoading = false
             })
-            .catch(err => {
-              console.log(err.response)
+            .catch(() => {
             })
         } else {
           Swal.fire('Cancel', 'We keep your article save', 'success')
@@ -185,8 +179,7 @@ export default {
         .then(({ data }) => {
           this.items = data
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
         })
     },
     searchByField () {
@@ -206,8 +199,7 @@ export default {
           .then(({ data }) => {
             this.items = data
           })
-          .catch(err => {
-            console.log(err)
+          .catch(() => {
           })
       }
     },
@@ -233,7 +225,6 @@ export default {
     }
   },
   created () {
-    console.log('createee')
     if (localStorage.getItem('token')) {
       this.isLoading = true
       this.getMyArticle()

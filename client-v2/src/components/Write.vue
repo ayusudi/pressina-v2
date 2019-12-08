@@ -126,7 +126,6 @@ export default {
           })
         })
         .catch(() => {
-          // console.log(err)
           toastr.warning('Image is required and Image type is JPG').css({
             width: '550px',
             'max-width': '600px',
